@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+}
+
+header {
+    background-color: black;
+    padding: 30px 20px;
+}
+
+header h1 {
+    color: white;
+}
+
+#container {
+    padding: 10px;
+}
+
+.title {
+    font-family: 'bold';
+}
+
+.text-content {
+    font-family: 'regular';
+}
+
+.person-button {
+    background-color: #2d55ff;
+    color: white;
+    font-family: 'bold';
+    font-size: 100%;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.person-button:hover {
+    background-color: #2b2caa;
+}
