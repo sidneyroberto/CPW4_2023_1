@@ -12,6 +12,7 @@ instructions.className = 'text-content'
 container.appendChild(instructions)
 
 const addPersonButton = document.createElement('button')
+addPersonButton.id = 'add-person-button'
 addPersonButton.className = 'person-button'
 addPersonButton.innerText = 'Adicionar'
 addPersonButton.type = 'button'
