@@ -20,4 +20,5 @@ export const CounterValue = styled.span`
   font-family: 'regular';
   font-size: 32px;
   color: white;
+  margin-left: 1px;
 `
