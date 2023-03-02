@@ -1,3 +1,11 @@
-const App = () => <h1>Oi!</h1>
+import Header from './components/Header'
+
+const App = () => {
+  return (
+    <>
+      <Header title='Exemplo Cypress' />
+    </>
+  )
+}
 
 export default App

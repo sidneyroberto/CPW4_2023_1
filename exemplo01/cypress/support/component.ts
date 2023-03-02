@@ -37,3 +37,7 @@ Cypress.Commands.add('mount', mount)
 
 // Example use:
 // cy.mount(<MyComponent />)
+
+// Carrega as variáveis de ambiente do Styled Components
+process = process || { env: {} }
+process.env = process.env || {}
