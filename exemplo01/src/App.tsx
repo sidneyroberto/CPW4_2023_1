@@ -13,10 +13,15 @@ const App = () => {
       <Counter value={value} />
 
       <ButtonPanel>
-        <ChangeValueButton onClick={() => setValue(value + 1)}>
+        <ChangeValueButton
+          data-cy='increment-button'
+          onClick={() => setValue(value + 1)}
+        >
           Incrementar
         </ChangeValueButton>
-        <ChangeValueButton onClick={() => setValue(0)}>Zerar</ChangeValueButton>
+        <ChangeValueButton data-cy='reset-button' onClick={() => setValue(0)}>
+          Zerar
+        </ChangeValueButton>
       </ButtonPanel>
     </>
   )
