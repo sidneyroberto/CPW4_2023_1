@@ -1,32 +1,28 @@
 import { BrowserRouter } from 'react-router-dom'
 import WordCard from '.'
-import { Word } from '../../models/Word'
 import FontStyles from '../../assets/fonts/fonts'
+import { Word } from '../../models/Word'
 
 describe('<WordCard />', () => {
   it('should render word info correctly', () => {
-    const word: Word = {
-      term: 'heathen',
-      audioUrls: [
-        'https://api.dictionaryapi.dev/media/pronunciations/en/heathen-us.mp3',
-      ],
-      meanings: [
-        'An adherent of the Germanic neo-pagan faith of Heathenry.',
-        'Pertaining or adhering to the Germanic neo-pagan faith Heathenry.',
-        'A person who does not follow a Christian religion; a pagan.',
-        '(by extension) An uncultured or uncivilized person, philistine.',
-        'Not adhering to Christian religion; pagan.',
-        '(by extension) Uncultured; uncivilized; savage, philistine.',
-      ],
-    }
+    cy.fixture('word').then((wordJson) => {
+      const word: Word = wordJson as Word
+      const order = 1
 
-    const order = 1
+      cy.mount(
+        <BrowserRouter>
+          <FontStyles />
+          <WordCard word={word} order={order} />
+        </BrowserRouter>
+      )
 
-    cy.mount(
-      <BrowserRouter>
-        <FontStyles />
-        <WordCard word={word} order={order} />
-      </BrowserRouter>
-    )
+      const { audioUrls, meanings, term } = word
+      const title = `${order} - ${term}`
+      cy.get('[data-cy="word-title"]').should('have.text', title)
+
+      const details = `${meanings.length} significado(s) e ${audioUrls.length} áudio(s) de pronúncia`
+
+      cy.get('[data-cy="word-details"]').should('have.text', details)
+    })
   })
 })
