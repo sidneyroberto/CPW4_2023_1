@@ -1,7 +1,5 @@
-import { BrowserRouter } from 'react-router-dom'
 import WordCard from '.'
 import { Word } from '../../models/Word'
-import FontStyles from '../../assets/fonts/fonts'
 
 describe('<WordCard />', () => {
   it('should render word info correctly', () => {
@@ -22,11 +20,6 @@ describe('<WordCard />', () => {
 
     const order = 1
 
-    cy.mount(
-      <BrowserRouter>
-        <FontStyles />
-        <WordCard word={word} order={order} />
-      </BrowserRouter>
-    )
+    cy.mount(<WordCard word={word} order={order} />)
   })
 })

@@ -1,35 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Word } from './models/Word'
+import WordCard from './components/WordCard'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [word, setWord] = useState<Word>({
+    term: 'heathen',
+    audioUrls: [
+      'https://api.dictionaryapi.dev/media/pronunciations/en/heathen-us.mp3',
+    ],
+    meanings: [
+      'An adherent of the Germanic neo-pagan faith of Heathenry.',
+      'Pertaining or adhering to the Germanic neo-pagan faith Heathenry.',
+      'A person who does not follow a Christian religion; a pagan.',
+      '(by extension) An uncultured or uncivilized person, philistine.',
+      'Not adhering to Christian religion; pagan.',
+      '(by extension) Uncultured; uncivilized; savage, philistine.',
+    ],
+  })
+  const [order, setOrder] = useState(1)
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+  return <WordCard word={word} order={order} />
 }
 
 export default App
