@@ -1,4 +1,6 @@
 import { CSSProperties, useCallback, useState } from 'react'
+import { ClockLoader } from 'react-spinners'
+
 import WordCard from '../../components/WordCard'
 import { Word, isInstanceOfWordNotFound } from '../../models/Word'
 import { WordService } from '../../services/WordService'
@@ -15,6 +17,7 @@ const wordService = new WordService()
 const loadingCssOverride: CSSProperties = {
   margin: '10px auto',
 }
+const loadingColor = '#392e4a'
 
 const Home = () => {
   const [filter, setFilter] = useState('')
@@ -54,6 +57,10 @@ const Home = () => {
           onClick={searchWords}
         />
       </SearchPanel>
+
+      {isSearching && (
+        <ClockLoader color={loadingColor} cssOverride={loadingCssOverride} />
+      )}
 
       {!isSearching && words.length > 0 && (
         <>
