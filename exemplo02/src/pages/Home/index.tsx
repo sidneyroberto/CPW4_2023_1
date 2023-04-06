@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { CSSProperties, useCallback, useState } from 'react'
 import WordCard from '../../components/WordCard'
 import { Word, isInstanceOfWordNotFound } from '../../models/Word'
 import { WordService } from '../../services/WordService'
@@ -12,6 +12,9 @@ import {
 } from './styles'
 
 const wordService = new WordService()
+const loadingCssOverride: CSSProperties = {
+  margin: '10px auto',
+}
 
 const Home = () => {
   const [filter, setFilter] = useState('')
@@ -33,7 +36,7 @@ const Home = () => {
 
       setIsSearching(false)
     }
-  }, [isSearching, filter])
+  }, [filter])
 
   return (
     <HomeContainer>
