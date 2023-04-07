@@ -9,7 +9,7 @@ export interface WordNotFound {
 }
 
 export const isInstanceOfWordNotFound = (obj: Word[] | WordNotFound) =>
-  (<WordNotFound>obj).title != undefined
+  (obj as WordNotFound).title != undefined
 
 export const getWords = (jsonObj: any): Word[] | WordNotFound => {
   const { title } = jsonObj
@@ -41,7 +41,7 @@ export const getWords = (jsonObj: any): Word[] | WordNotFound => {
         if (definitions && definitions.length > 0) {
           definitions.forEach((d: any) => {
             const { definition } = d
-            meaningsArr.push(d)
+            meaningsArr.push(definition)
           })
         }
       })
