@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { Word } from '../../models/Word'
 import {
   AudioPlayer,
+  BackButton,
   DetailsContainer,
   DetailsList,
   DetailsMetadata,
@@ -49,6 +50,8 @@ const Details = () => {
           ))}
         </DetailsPanel>
       )}
+
+      <BackButton onClick={() => navigate('/')}>Voltar</BackButton>
     </DetailsContainer>
   )
 }
