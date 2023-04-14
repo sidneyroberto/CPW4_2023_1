@@ -1,7 +1,9 @@
-import { CSSProperties, useCallback, useState } from 'react'
+import { CSSProperties, useCallback, useContext, useState } from 'react'
 import { ClockLoader } from 'react-spinners'
 
 import WordCard from '../../components/WordCard'
+import { setWords } from '../../context/Actions'
+import UserContext from '../../context/UserContext'
 import { Word, isInstanceOfWordNotFound } from '../../models/Word'
 import { WordService } from '../../services/WordService'
 import {
@@ -23,7 +25,9 @@ const Home = () => {
   const [filter, setFilter] = useState('')
   const [isSearching, setIsSearching] = useState(false)
   const [noWordFound, setNoWordFound] = useState(false)
-  const [words, setWords] = useState<Word[]>([])
+
+  const { state, dispatch } = useContext(UserContext)
+  const { words } = state
 
   const searchWords = useCallback(async () => {
     if (filter) {
@@ -32,14 +36,16 @@ const Home = () => {
       const response = await wordService.findWords(filter)
       if (isInstanceOfWordNotFound(response)) {
         setNoWordFound(true)
+        setWords(dispatch, [])
       } else {
-        setWords(response as Word[])
+        const words = response as Word[]
+        setWords(dispatch, words)
         setFilter('')
       }
 
       setIsSearching(false)
     }
-  }, [filter])
+  }, [filter, dispatch])
 
   return (
     <HomeContainer>
