@@ -79,7 +79,7 @@ describe('English Dictionary E2E tests', () => {
   })
 
   it('should show correct meanings about a word', () => {
-    const query = 'orange'
+    const query = 'word'
     cy.request({
       method: 'GET',
       url: `${Cypress.env('API_URL')}/${query}`,
@@ -88,6 +88,19 @@ describe('English Dictionary E2E tests', () => {
       console.log(words)
 
       cy.performSearch(query)
+      cy.get('[data-cy="word-details"]').first().click()
+
+      const firstResult: Word = words[0]
+      const meaningsList = cy.get('[data-cy="details-list"] > li')
+      meaningsList.should('have.length', firstResult.meanings.length)
+
+      meaningsList.then(($value) => {
+        const { meanings } = firstResult
+
+        for (let i = 0; i < meanings.length; i++) {
+          expect($value[i].innerText).to.equal(meanings[i])
+        }
+      })
     })
   })
 })
