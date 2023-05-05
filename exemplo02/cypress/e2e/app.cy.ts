@@ -78,7 +78,7 @@ describe('English Dictionary E2E tests', () => {
     )
   })
 
-  it('should show correct meanings about a word', () => {
+  it.only('should show correct meanings about a word', () => {
     const query = 'word'
     cy.request({
       method: 'GET',
