@@ -1,4 +1,5 @@
 import { RouteObject } from 'react-router-dom'
+import ProtectedRoute from './components/ProtectedRoute'
 import Home from './pages/Home'
 import Login from './pages/Login'
 
@@ -9,7 +10,11 @@ const routes: RouteObject[] = [
   },
   {
     path: '/home',
-    element: <Home />,
+    element: (
+      <ProtectedRoute>
+        <Home />
+      </ProtectedRoute>
+    ),
   },
 ]
 
