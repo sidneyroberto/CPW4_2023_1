@@ -15,6 +15,7 @@ export const LoginButton = styled.button`
   padding: 20px 0;
   border-radius: 20px;
   box-shadow: 20px 20px 60px #d2d2d2, -20px -20px 60px #ffffff;
+  cursor: pointer;
 `
 
 export const ProviderLogo = styled.img`
