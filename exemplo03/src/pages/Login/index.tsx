@@ -6,7 +6,14 @@ import { useNavigate } from 'react-router-dom'
 import logo from '../../assets/img/google.png'
 import firebaseApp from '../../config/firebase'
 import { UserContext } from '../../context/UserContext'
-import { LoginButton, LoginContainer, ProviderLogo, SignInText } from './styles'
+import {
+  ErrorMessage,
+  InfoMessage,
+  LoginButton,
+  LoginContainer,
+  ProviderLogo,
+  SignInText,
+} from './styles'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -53,12 +60,18 @@ const Login = () => {
   }
 
   return (
-    <LoginContainer>
-      <LoginButton onClick={() => signinWithGoogle()}>
-        <ProviderLogo src={logo} alt='Google' />
-        <SignInText>Entrar com Google</SignInText>
-      </LoginButton>
-    </LoginContainer>
+    <>
+      <LoginContainer>
+        <LoginButton onClick={() => signinWithGoogle()}>
+          <ProviderLogo src={logo} alt='Google' />
+          <SignInText>Entrar com Google</SignInText>
+        </LoginButton>
+      </LoginContainer>
+
+      {googleError && <ErrorMessage>Erro ao tentar autenticar</ErrorMessage>}
+
+      {googleLoading && <InfoMessage>Autenticando...</InfoMessage>}
+    </>
   )
 }
 

@@ -28,3 +28,21 @@ export const SignInText = styled.span`
   font-size: 18px;
   color: #555;
 `
+
+const Message = styled.h2`
+  font-family: 'bold';
+  color: white;
+  width: 400px;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 30px auto;
+  text-align: center;
+`
+
+export const InfoMessage = styled(Message)`
+  background-color: #4d05e8;
+`
+
+export const ErrorMessage = styled(Message)`
+  background-color: #cf000f;
+`
