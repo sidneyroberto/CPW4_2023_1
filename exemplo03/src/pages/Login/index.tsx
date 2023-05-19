@@ -1,6 +1,6 @@
-import { FacebookAuthProvider, getAuth } from 'firebase/auth'
+import { GoogleAuthProvider, getAuth } from 'firebase/auth'
 import { useContext, useEffect, useState } from 'react'
-import { useSignInWithFacebook } from 'react-firebase-hooks/auth'
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import { useNavigate } from 'react-router-dom'
 
 import logo from '../../assets/img/facebook.png'
@@ -25,20 +25,16 @@ const Login = () => {
   const auth = getAuth(firebaseApp)
   auth.languageCode = 'pt-br'
 
-  const [
-    signInWithFacebook,
-    facebookUserCredentials,
-    facebookLoading,
-    facebookError,
-  ] = useSignInWithFacebook(auth)
+  const [signinWithGoogle, googleUserCredentials, googleLoading, googleError] =
+    useSignInWithGoogle(auth)
 
-  if (facebookUserCredentials) {
-    const credentials = FacebookAuthProvider.credentialFromResult(
-      facebookUserCredentials
+  if (googleUserCredentials) {
+    const credentials = GoogleAuthProvider.credentialFromResult(
+      googleUserCredentials
     )
 
     const token = credentials?.accessToken
-    const { user } = facebookUserCredentials
+    const { user } = googleUserCredentials
     const userName = user.displayName
     const profilePic = user.photoURL
 
@@ -52,13 +48,13 @@ const Login = () => {
     }
   }
 
-  if (facebookError) {
-    console.log(facebookError)
+  if (googleError) {
+    console.log(googleError)
   }
 
   return (
     <LoginContainer>
-      <LoginButton onClick={() => signInWithFacebook()}>
+      <LoginButton onClick={() => signinWithGoogle()}>
         <ProviderLogo src={logo} alt='Facebook' />
         <SignInText>Entrar com Facebook</SignInText>
       </LoginButton>
