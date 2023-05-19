@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import { useNavigate } from 'react-router-dom'
 
-import logo from '../../assets/img/facebook.png'
+import logo from '../../assets/img/google.png'
 import firebaseApp from '../../config/firebase'
 import { UserContext } from '../../context/UserContext'
 import { LoginButton, LoginContainer, ProviderLogo, SignInText } from './styles'
@@ -55,8 +55,8 @@ const Login = () => {
   return (
     <LoginContainer>
       <LoginButton onClick={() => signinWithGoogle()}>
-        <ProviderLogo src={logo} alt='Facebook' />
-        <SignInText>Entrar com Facebook</SignInText>
+        <ProviderLogo src={logo} alt='Google' />
+        <SignInText>Entrar com Google</SignInText>
       </LoginButton>
     </LoginContainer>
   )
