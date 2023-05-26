@@ -44,6 +44,7 @@ const Login = () => {
     const { user } = googleUserCredentials
     const userName = user.displayName
     const profilePic = user.photoURL
+    //const profilePic = `${user.photoURL}?access_token=${token}`
 
     if (token) {
       setToken(token)
