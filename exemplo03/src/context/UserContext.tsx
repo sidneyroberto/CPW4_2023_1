@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 
 type UserContextType = {
   token: string
@@ -10,9 +10,9 @@ type UserContextType = {
 }
 
 const initialValue: UserContextType = {
-  token: '',
-  userName: '',
-  profilePic: '',
+  token: localStorage.getItem('token') || '',
+  userName: localStorage.getItem('userName') || '',
+  profilePic: localStorage.getItem('profilePic') || '',
   setToken: () => {},
   setUserName: () => {},
   setProfilePic: () => {},
@@ -28,6 +28,12 @@ export const UserContextProvider = ({ children }: Props) => {
   const [token, setToken] = useState(initialValue.token)
   const [userName, setUserName] = useState(initialValue.userName)
   const [profilePic, setProfilePic] = useState(initialValue.profilePic)
+
+  useEffect(() => {
+    localStorage.setItem('token', token)
+    localStorage.setItem('userName', userName)
+    localStorage.setItem('profilePic', profilePic)
+  }, [token, userName, profilePic])
 
   return (
     <UserContext.Provider
